@@ -3,8 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
-import { Separator } from '@/components/ui/separator';
-import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -52,23 +50,21 @@ const Index = () => {
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
                 <Button size="lg" className="bg-gradient-to-r from-green-500 to-orange-500 hover:from-green-600 hover:to-orange-600 text-white border-0">
-                  <Icon name="Play" className="mr-2" size={20} />
-                  Играть сейчас
+                  ▶️ Играть сейчас
                 </Button>
                 <Button variant="outline" size="lg">
-                  <Icon name="Download" className="mr-2" size={20} />
-                  Скачать лаунчер
+                  ⬇️ Скачать лаунчер
                 </Button>
               </div>
 
-              <div className="flex items-center justify-center gap-6 text-sm">
+              <div className="flex items-center justify-center gap-6 text-sm flex-wrap">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                   <span>Онлайн: {onlinePlayers} игроков</span>
                 </div>
-                <Separator orientation="vertical" className="h-4" />
+                <span className="text-gray-400">|</span>
                 <span>IP: play.server.ru</span>
-                <Separator orientation="vertical" className="h-4" />
+                <span className="text-gray-400">|</span>
                 <span>Версия: 1.20.4</span>
               </div>
             </div>
@@ -80,43 +76,43 @@ const Index = () => {
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} hover-scale`}>
+            <Card className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} transition-transform hover:scale-105`}>
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-orange-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                  <Icon name="Users" className="text-white" size={32} />
+                  <span className="text-white text-3xl">👥</span>
                 </div>
                 <CardTitle>Активное сообщество</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-center text-muted-foreground">
+                <p className="text-center text-gray-600 dark:text-gray-400">
                   Более 1000 активных игроков, дружелюбная атмосфера и опытная администрация
                 </p>
               </CardContent>
             </Card>
 
-            <Card className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} hover-scale`}>
+            <Card className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} transition-transform hover:scale-105`}>
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-orange-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                  <Icon name="Shield" className="text-white" size={32} />
+                  <span className="text-white text-3xl">🛡️</span>
                 </div>
                 <CardTitle>Защита от гриферов</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-center text-muted-foreground">
+                <p className="text-center text-gray-600 dark:text-gray-400">
                   Система приватов, защита территорий и строгая модерация
                 </p>
               </CardContent>
             </Card>
 
-            <Card className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} hover-scale`}>
+            <Card className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} transition-transform hover:scale-105`}>
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-orange-500 rounded-xl mx-auto mb-4 flex items-center justify-center">
-                  <Icon name="Zap" className="text-white" size={32} />
+                  <span className="text-white text-3xl">⚡</span>
                 </div>
                 <CardTitle>Стабильная работа</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-center text-muted-foreground">
+                <p className="text-center text-gray-600 dark:text-gray-400">
                   Мощные серверы, отсутствие лагов и 99.9% аптайм
                 </p>
               </CardContent>
@@ -138,7 +134,7 @@ const Index = () => {
               "Не спамить в чате и не использовать мат",
               "Запрещена реклама других серверов"
             ].map((rule, index) => (
-              <Card key={index} className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} animate-fade-in`} style={{animationDelay: `${index * 0.1}s`}}>
+              <Card key={index} className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} opacity-0 animate-fade-in`} style={{animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards'}}>
                 <CardContent className="p-4">
                   <div className="flex items-center space-x-3">
                     <Badge className="bg-gradient-to-r from-green-500 to-orange-500 text-white">
@@ -180,7 +176,7 @@ const Index = () => {
                 features: ["Все от Premium", "Креативный режим", "WorldEdit", "Админ поддержка 24/7"]
               }
             ].map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'ring-2 ring-green-500' : ''} ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} hover-scale`}>
+              <Card key={index} className={`relative ${plan.popular ? 'ring-2 ring-green-500' : ''} ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} transition-transform hover:scale-105`}>
                 {plan.popular && (
                   <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-orange-500 text-white">
                     Популярный
@@ -190,14 +186,14 @@ const Index = () => {
                   <CardTitle>{plan.name}</CardTitle>
                   <div className="text-3xl font-bold">
                     {plan.price}
-                    <span className="text-lg text-muted-foreground">{plan.period}</span>
+                    <span className="text-lg text-gray-600 dark:text-gray-400">{plan.period}</span>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 mb-6">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center">
-                        <Icon name="Check" className="text-green-500 mr-2" size={16} />
+                        <span className="text-green-500 mr-2">✓</span>
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
@@ -218,10 +214,10 @@ const Index = () => {
           <h3 className="text-3xl font-bold mb-12">Контакты и поддержка</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} hover-scale`}>
+            <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} transition-transform hover:scale-105`}>
               <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Icon name="MessageCircle" className="mr-2" />
+                <CardTitle className="flex items-center justify-center">
+                  <span className="mr-2">💬</span>
                   Discord
                 </CardTitle>
                 <CardDescription>Общайся с игроками и получай поддержку</CardDescription>
@@ -233,10 +229,10 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} hover-scale`}>
+            <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} transition-transform hover:scale-105`}>
               <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Icon name="Send" className="mr-2" />
+                <CardTitle className="flex items-center justify-center">
+                  <span className="mr-2">📱</span>
                   Telegram
                 </CardTitle>
                 <CardDescription>Новости сервера и быстрая связь</CardDescription>
@@ -254,7 +250,7 @@ const Index = () => {
       {/* Footer */}
       <footer className={`py-8 px-6 border-t ${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'}`}>
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-muted-foreground">
+          <p className="text-gray-600 dark:text-gray-400">
             © 2024 Minecraft Survival Server. Все права защищены.
           </p>
         </div>
